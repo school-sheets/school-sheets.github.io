@@ -122,7 +122,7 @@ min-width: 100%;
   
 
   <nav>
-      <a href="https://tridentgames.lol/">Home</a>
+      <a href="index.html/">Home</a>
       <a href="games">Games</a>
       <a href="apps">Apps</a>
       <a href="extra">Extra</a>
@@ -261,82 +261,8 @@ min-width: 100%;
 		</script>
 		<script type="text/javascript" src="//separatelysmackfibber.com/61e3b777a45443b3f41d3ee4575c8189/invoke.js"></script>
 	</div>
-<script>
-        // Helper function to get the current time in hours and minutes
-        function getCurrentTime() {
-            const now = new Date();
-            const hours = now.getHours();
-            const minutes = now.getMinutes();
-            return { hours, minutes };
-        }
 
-        // Function to show system notification and set up click event to redirect to the site
-        function showSystemNotification(title, body, url) {
-            if (Notification.permission === 'granted') {
-                const notification = new Notification(title, {
-                    body: body,
-                    icon: 'https://tridentgames.lol/img/tridentlogo.png', // Replace with your own icon URL
-                    tag: 'twice-a-day-notification' // Tag to prevent duplicate notifications
-                });
-
-                notification.onclick = function () {
-                    window.focus();
-                    window.location.href = url; // Redirect to the site when notification is clicked
-                };
-
-                // Auto close the notification after 5 seconds
-                setTimeout(notification.close.bind(notification), 5000);
-            }
-        }
-
-        // Function to check if it's time to send a notification
-        function checkNotificationTime() {
-            const notificationTimes = [
-                { hours: 9, minutes: 0 },  // First notification time: 9:00 AM
-                { hours: 17, minutes: 0 }  // Second notification time: 5:00 PM
-            ];
-
-            const currentTime = getCurrentTime();
-            
-            // Get last notification time from localStorage
-            const lastNotificationTime = localStorage.getItem('lastNotificationTime');
-            const lastNotifiedDate = lastNotificationTime ? new Date(lastNotificationTime).getDate() : null;
-
-            // Check if today has already been notified
-            const today = new Date().getDate();
-
-            if (lastNotifiedDate !== today) {
-                notificationTimes.forEach(time => {
-                    if (currentTime.hours === time.hours && currentTime.minutes === time.minutes) {
-                        showSystemNotification("Hey!", "Check out the latest games for Trident!", "https://tridentgames.lol");
-                        
-                        // Store the current notification time in localStorage
-                        localStorage.setItem('lastNotificationTime', new Date());
-                    }
-                });
-            }
-        }
-
-        // Function to initialize notifications
-        function initNotifications() {
-            // Check if notifications are supported
-            if ('Notification' in window) {
-                if (Notification.permission !== 'granted') {
-                    Notification.requestPermission().then(permission => {
-                        if (permission === 'granted') {
-                            console.log('Notification permission granted.');
-                        }
-                    });
-                }
-            }
-
-            // Check notification time every minute
-            setInterval(checkNotificationTime, 60 * 1000); // Every minute
-        }
-
-        // Initialize notifications when page is loaded
-        initNotifications();
-    </script>
+        
 <script src="/extra/panic-key.js" defer></script>
 <script src="/js/nowgghome.js" defer></script>
 <script src="/js/now.js" defer></script>
